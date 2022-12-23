@@ -1,0 +1,30 @@
+nav{
+    background-color: rgb(105, 41, 165);
+    padding: 14px 40px;
+    color: white;
+    height: 60px;
+    justify-content: space-between;
+    display: flex;
+    gap: 30px;
+
+    .menu{
+        display: flex;
+        gap: 30px;
+
+    }
+
+    .folder{
+        display: flex;
+        gap: 30px; 
+    }
+    
+    .user{
+        display: flex;
+        gap: 30px;
+
+        div{
+            display: flex;
+            gap:10px;
+        }
+    }
+}
