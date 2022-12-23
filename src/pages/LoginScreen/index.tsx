@@ -1,18 +1,16 @@
-
-import EmailAndPassword from './EmailAndPassword'
+import EmailAndPassword from './Login'
 import './LoginScreen.modules.scss'
 import Register from './Register'
 
-const LoginScreen = () => {  
+const Login = () => {  
     
 
     return(
-      <section className={"LoginScreen"}>
+      <section className={"Login"}>
         <EmailAndPassword />
-        <Register/>
-    
-    </section>
+        <Register/>    
+      </section>
     )
 }
 
-export default LoginScreen
+export default Login
