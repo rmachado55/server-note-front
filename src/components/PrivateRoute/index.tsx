@@ -3,10 +3,10 @@ import { Navigate } from 'react-router-dom';
 
 export { PrivateRoute };
 
-function PrivateRoute(children : any) {
+function PrivateRoute(children : JSX.Element) {
     
     if (localStorage.getItem('user')){        
-      return <NotesScreen/>
+      return children
     } else {
       return <Navigate to="/" />}
     }

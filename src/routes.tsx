@@ -10,14 +10,24 @@ const App = () => {
     
     const [ error, setError ] = useState( false )
     const [ isLoggedIn, setIsLoggedIn ] = useState( false )
+    const [notes , setNotes] = useState<any>([])
+    const [selectedNote, setSelectedNote] = useState(0)
   
 
     return(<>
-        <NavBar/>
+        <NavBar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
         <BrowserRouter>
         <Routes>
             <Route path="/" element={<Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />}/>            
-            <Route path="/notes" element={<PrivateRoute><NotesScreen/></PrivateRoute>} />
+            <Route path="/notes" element={
+                <PrivateRoute>
+                    <NotesScreen
+                        notes = {notes}
+                        setNotes = {setNotes}
+                        selectedNote = {selectedNote}
+                        setSelectedNote = {setSelectedNote}
+                    />
+                </PrivateRoute>} />
         </Routes>
         </BrowserRouter>              
         </>)

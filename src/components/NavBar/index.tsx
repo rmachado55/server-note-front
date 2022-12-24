@@ -1,13 +1,21 @@
 import './NavBar.modules.scss'
 import { TbGridDots } from "react-icons/tb";
-import { IoDiamondOutline } from "react-icons/io5";
-import {VscSettingsGear, VscBell} from "react-icons/vsc";
+import {VscSettingsGear} from "react-icons/vsc";
 import {IoIosArrowDown} from "react-icons/io"
+import {TbLogout} from 'react-icons/tb'
+import UsersService from 'services/users';
+import { IisLogged } from 'interfaces/isLogged';
 
 
-const NavBar = () => {
-    
-    
+
+const NavBar = (props :IisLogged) => {
+
+    function LogOffOperation() {
+        UsersService.logout()
+        props.setIsLoggedIn(false)         
+    }
+         
+
     return(
         <nav>
             <div className={"menu"}>
@@ -15,19 +23,26 @@ const NavBar = () => {
                 <h5>ServerNote</h5>
             </div>
             <div className={"folder"}>
-                <p>FolderName</p>
+                <p>Nome da Nota Ativa</p>
                 <IoIosArrowDown size={20}/>
 
             </div>
-            <div className={"user"}>
-                <div>
-                    <IoDiamondOutline size={20}/>
-                    <p>Mais sobre este DEV</p>
-                </div>
-                <VscSettingsGear size={20}/>
-                <VscBell size={20}/>
-                
-            </div>
+            <VscSettingsGear size={20}/>                
+                    { props.isLoggedIn ?
+                    <div className={"user"}>
+                        <div>
+                            <p>Nome do User</p>
+                                <div onClick={() => LogOffOperation()}>
+                                    <TbLogout size={20}/>
+                                    <p>LogOut</p>
+                                </div>
+                        </div>
+                    </div>
+                    :
+                        ''
+                   }           
+       
+            
         </nav>
         
     )}
