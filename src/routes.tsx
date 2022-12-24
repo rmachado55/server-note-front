@@ -1,28 +1,26 @@
 import LoginScreen from "./pages/LoginScreen/index"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import NoteBrowser from "pages/NoteBrowser"
+import NotesScreen from "pages/NotesScreen"
 import { useState } from "react";
-
+import NavBar from "components/NavBar";
+import Login from "./pages/LoginScreen/index";
+import { PrivateRoute } from "components/PrivateRoute";
 
 const App = () => { 
     
-    // const [email, setEmail] = useState("");
-    // const [name, setName] = useState("");
-    // const [password, setPassword] = useState("");
-    // const [redirectToLogin, setRedirectToLogin] = useState(false);
-    // const [error, setError] = useState(false);
+    const [ error, setError ] = useState( false )
+    const [ isLoggedIn, setIsLoggedIn ] = useState( false )
+  
 
-    return(
+    return(<>
+        <NavBar/>
         <BrowserRouter>
-            <Routes>
-                <Route path={'/'}
-                element={<LoginScreen
-                    
-                />}/>
-            
-                <Route path={'/note/editor'} element={<NoteBrowser/>}/>
-            </Routes>
-        </BrowserRouter>
-    ) }
+        <Routes>
+            <Route path="/" element={<Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />}/>            
+            <Route path="/notes" element={<PrivateRoute><NotesScreen/></PrivateRoute>} />
+        </Routes>
+        </BrowserRouter>              
+        </>)
+}
 
 export default App

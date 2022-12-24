@@ -23,5 +23,5 @@
   },
   "include": [
     "src"
-, "src/pages/NoteBrowser/NoteEditor/index.jsx"  ]
+, "src/pages/NotesScreen/NoteEditor/index.jsx"  ]
 }

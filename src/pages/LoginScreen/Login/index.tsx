@@ -1,19 +1,17 @@
 
+import { IisLogged } from 'interface/isLogged';
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { redirect } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import UsersService from 'service/users';
 
-const EmailAndPassword = () =>
+const EmailAndPassword = (props : IisLogged) =>
 {
 
-  const [ name, setName ] = useState( 'teste@teste' )
+  const navigate = useNavigate()
   const [ email, setEmail ] = useState( '' )
   const [ password, setPassword ] = useState( 'teste123' )
-  const [ redirectToLogin, setRedirectToLogin ] = useState( false )
-  const [ error, setError ] = useState( false )
-  const [ redirectToNotes, setRedirectToNotes ] = useState( false )
 
 
   const HandleSubmit = async ( evt: any ) =>
@@ -22,24 +20,19 @@ const EmailAndPassword = () =>
     try
     {
       const user = await UsersService.login( {
-        name: name,
         email: email,
         password: password,
-      } )
-      setRedirectToNotes( true )
-
-    } catch ( error )
-    {
-      setError( true )
+      })
+       props.setIsLoggedIn(true)
+       navigate("/notes")
+     } catch ( error ){
+      alert(error)
     }
+    
+
   }
 
-
-    if ( redirectToNotes === true ) {
-      return redirect("/login");
-    } else {
-    
-      return (
+    return(
         <div className={ "Box" }>
           <h2>Login</h2>
           <Form onSubmit={ HandleSubmit }>
@@ -48,8 +41,8 @@ const EmailAndPassword = () =>
               <Form.Control
                 type="email"
                 placeholder="Digite seu e-mail. Ou se preferir, utilize o login teste123"
-                value={ name }
-                onChange={ e => setName( e.target.value ) }
+                value={ email }
+                onChange={ e => setEmail( e.target.value ) }
               />
               <Form.Text className="text-muted">
     
@@ -72,7 +65,7 @@ const EmailAndPassword = () =>
               <Button
                 variant="primary"
                 type="submit"
-                onClick={ e => setRedirectToNotes( true ) }
+
               >
                 Entrar
               </Button>
@@ -80,12 +73,7 @@ const EmailAndPassword = () =>
     
           </Form>
         </div>
-      )
-    }
-    
-      
-}
-    
+    )} 
   
 export default EmailAndPassword
 
