@@ -6,7 +6,6 @@ export interface Inotes {
         author : string,
         created_at : string,
         updated_at : string,
-        __v : number
-        
+        __v : number        
         
 }

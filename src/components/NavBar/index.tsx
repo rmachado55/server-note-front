@@ -6,15 +6,16 @@ import {TbLogout} from 'react-icons/tb'
 import UsersService from 'services/users';
 import { IisLogged } from 'interfaces/isLogged';
 
-
-
-const NavBar = (props :IisLogged) => {
+const NavBar = ( props : {
+    isLoggedIn : boolean,
+    setIsLoggedIn : React.Dispatch<React.SetStateAction<boolean>>
+}
+    ) => {
 
     function LogOffOperation() {
         UsersService.logout()
         props.setIsLoggedIn(false)         
-    }
-         
+    }        
 
     return(
         <nav>
@@ -22,16 +23,12 @@ const NavBar = (props :IisLogged) => {
                 <TbGridDots size={24}/>
                 <h5>ServerNote</h5>
             </div>
-            <div className={"folder"}>
-                <p>Nome da Nota Ativa</p>
-                <IoIosArrowDown size={20}/>
 
-            </div>
-            <VscSettingsGear size={20}/>                
+            
                     { props.isLoggedIn ?
                     <div className={"user"}>
-                        <div>
-                            <p>Nome do User</p>
+                        <div>                     
+                            <VscSettingsGear size={20}/>                
                                 <div onClick={() => LogOffOperation()}>
                                     <TbLogout size={20}/>
                                     <p>LogOut</p>

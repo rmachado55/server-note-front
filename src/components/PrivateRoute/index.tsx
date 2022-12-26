@@ -1,12 +1,13 @@
 import NotesScreen from 'pages/NotesScreen';
+import React from 'react';
 import { Navigate } from 'react-router-dom';
 
 export { PrivateRoute };
 
-function PrivateRoute(children : JSX.Element) {
+function PrivateRoute(props : any) {
     
     if (localStorage.getItem('user')){        
-      return children
+      return props.children
     } else {
       return <Navigate to="/" />}
     }

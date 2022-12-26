@@ -10,15 +10,14 @@ const EmailAndPassword = ( props: IisLogged ) =>
 {
 
   const navigate = useNavigate()
-  const [ email, setEmail ] = useState( '' )
-  const [ password, setPassword ] = useState( 'teste123' )
+  const [ email, setEmail ] = useState( 'heisenberg@crystals.com' )
+  const [ password, setPassword ] = useState( 'apenasteste' )
 
 
   const HandleSubmit = async ( evt: any ) =>
   {
     evt.preventDefault();
-    try
-    {
+    try{
       const user = await UsersService.login( {
         email: email,
         password: password,
@@ -27,7 +26,7 @@ const EmailAndPassword = ( props: IisLogged ) =>
       navigate( "/notes" )
     } catch ( error )
     {
-      alert( error )
+      alert( "Login ou Senha inválidos" )
     }
 
 
@@ -41,7 +40,7 @@ const EmailAndPassword = ( props: IisLogged ) =>
           <Form.Label>Endereço de E-mail</Form.Label>
           <Form.Control
             type="email"
-            placeholder="Digite seu e-mail. Ou se preferir, utilize o login teste123"
+            placeholder="Digite seu e-mail."
             value={ email }
             onChange={ e => setEmail( e.target.value ) }
           />
@@ -54,14 +53,11 @@ const EmailAndPassword = ( props: IisLogged ) =>
           <Form.Label>Senha</Form.Label>
           <Form.Control
             type="password"
-            placeholder="Digite sua senha. Ou se preferir, utilize teste123"
+            placeholder="Digite sua senha"
             value={ password }
             onChange={ e => setPassword( e.target.value ) }
           />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Lembrar da senha" />
-        </Form.Group>
+        </Form.Group>        
         <Form.Group>
           <Button
             variant="primary"

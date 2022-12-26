@@ -10,7 +10,7 @@ const Login = ( props: IisLogged ) =>
   return (
     <section className={ "Login" }>
       <EmailAndPassword isLoggedIn={ props.isLoggedIn } setIsLoggedIn={ props.setIsLoggedIn } />
-      {/* <Register/>     */ }
+      {/* <Register isLoggedIn={ props.isLoggedIn } setIsLoggedIn={ props.setIsLoggedIn } /> */}
     </section>
   )
 }
